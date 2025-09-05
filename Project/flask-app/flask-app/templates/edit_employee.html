@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Employee</title>
+</head>
+<body>
+    <h1>Edit Employee</h1>
+    <form method="POST">
+        <input type="text" name="name" value="{{ employee.name }}" placeholder="Name" required><br>
+        <input type="email" name="email" value="{{ employee.email }}" placeholder="Email" required><br>
+        <input type="text" name="phone" value="{{ employee.phone }}" placeholder="Phone"><br>
+        <input type="text" name="job_title" value="{{ employee.job_title }}" placeholder="Job Title"><br>
+        <input type="number" name="salary" value="{{ employee.salary }}" step="0.01" placeholder="Salary"><br>
+        <button type="submit">Update</button>
+    </form>
+    <a href="{{ url_for('index') }}">Back</a>
+</body>
+</html>

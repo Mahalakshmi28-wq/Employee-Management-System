@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Dashboard</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 10px; border: 1px solid #ccc; text-align: center; }
+        th { background: #007bff; color: white; }
+        .btn { padding: 5px 10px; text-decoration: none; border-radius: 5px; }
+        .btn-edit { background: #28a745; color: white; }
+        .btn-delete { background: #dc3545; color: white; }
+        .btn-add { background: #007bff; color: white; margin-bottom: 15px; display: inline-block; }
+    </style>
+</head>
+<body>
+    <h2>Welcome, {{ session['user_name'] }} ({{ session['job_title'] }})</h2>
+    <a href="{{ url_for('logout') }}">Logout</a> |
+    <a href="{{ url_for('add_employee') }}" class="btn btn-add">+ Add Employee</a>
+
+    <h3>Employee List</h3>
+    <table>
+        <tr>
+            <th>ID</th><th>Name</th><th>Email</th><th>Phone</th><th>Job Title</th><th>Salary</th><th>Actions</th>
+        </tr>
+        {% for emp in employees %}
+        <tr>
+            <td>{{ emp.id }}</td>
+            <td>{{ emp.name }}</td>
+            <td>{{ emp.email }}</td>
+            <td>{{ emp.phone }}</td>
+            <td>{{ emp.job_title }}</td>
+            <td>{{ emp.salary }}</td>
+            <td>
+                <a href="{{ url_for('edit_employee', id=emp.id) }}" class="btn btn-edit">Edit</a>
+                <a href="{{ url_for('delete_employee', id=emp.id) }}" class="btn btn-delete" onclick="return confirm('Are you sure?')">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
